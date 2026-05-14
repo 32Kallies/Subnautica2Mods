@@ -59,6 +59,7 @@ RegisterKeyBindAsync(Key.RETURN, {}, function()
         callCommand(currentInput)
         currentInput = ""
     end
+    currentInput = ""
 end)
 
 -- reset input on closing the command console
