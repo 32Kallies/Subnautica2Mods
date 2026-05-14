@@ -28,7 +28,7 @@ Adds various new commands. [Full command list here](Mods/Kallie'sCustomSN2Comman
 
 ## More Quick Slots
 
-Allows you to set any custom number of slots for the toolbar.
+Allows you to set any custom number of slots for the toolbar. Edit the config.lua file to customize the number of slots.
 
 <img width="1152" height="163" alt="image" src="https://github.com/user-attachments/assets/e8d62b91-b9c6-4237-9e1d-5bf566a6b987" />
 
