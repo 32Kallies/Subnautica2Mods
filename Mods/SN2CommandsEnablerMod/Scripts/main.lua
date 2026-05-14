@@ -1,6 +1,6 @@
 local Hooked = false
 
-NotifyOnNewObject("/Game/Blueprints/UI/HUD/WBP_TopHud.WBP_TopHud_C", function(Context)
+NotifyOnNewObject("/Game/Blueprints/UI/HUD/WBP_TopHud.WBP_TopHud_C", function()
     if Hooked == true then
         return
     end
