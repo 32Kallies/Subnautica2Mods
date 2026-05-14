@@ -20,7 +20,6 @@ end
 ---@param path string
 ---@return UClass
 function CommandUtils.LoadClassByPath(path)
-    print("Loading entity by path " .. path .. "\n")
     local UEHelpers = require("UEHelpers")
     local load = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
     local kismet_library = StaticFindObject("/Script/Engine.KismetSystemLibrary")
@@ -32,7 +31,6 @@ function CommandUtils.LoadClassByPath(path)
     local world = UEHelpers.GetWorld()
 
     local loaded = load(world, pointer)
-    print("Loaded asset: " .. tostring(loaded) .. "\n")
     return loaded
 end
 
