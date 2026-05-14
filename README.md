@@ -22,7 +22,7 @@ this mod particularly helps if you missed a location and don't want to go lookin
 
 ## Kallie's Custom SN2 Commands
 
-Adds various new commands. [Full command list here](Mods/Kallie'sCustomSN2Commands/README.md).
+Adds various new commands and a basic framework for adding more. [Full command list here](Mods/Kallie'sCustomSN2Commands/README.md).
 
  <img width="457" height="112" alt="image" src="https://github.com/user-attachments/assets/b33592a4-4097-41ce-928c-75ee15d15de3" />
 
