@@ -6,7 +6,8 @@ local commands = {
     warp = require("Commands.warp"),
     warpforward = require("Commands.warpforward"),
     warpme = require("Commands.warpme"),
-    loadclass = require("Commands.loadclass")
+    loadclass = require("Commands.loadclass"),
+    safesummon = require("Commands.safesummon")
 }
 
 -- BACKEND LOGIC & HOOKS BELOW
