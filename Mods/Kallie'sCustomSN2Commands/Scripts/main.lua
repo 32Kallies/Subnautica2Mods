@@ -5,7 +5,8 @@ local commands = {
     ["goto"] = require("Commands.gotocmd"),
     warp = require("Commands.warp"),
     warpforward = require("Commands.warpforward"),
-    warpme = require("Commands.warpme")
+    warpme = require("Commands.warpme"),
+    loadclass = require("Commands.loadclass")
 }
 
 -- BACKEND LOGIC & HOOKS BELOW
