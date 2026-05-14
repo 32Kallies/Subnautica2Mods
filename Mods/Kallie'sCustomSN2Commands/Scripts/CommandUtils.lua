@@ -17,8 +17,8 @@ end
 
 ---Loads a class by its path, even if it wasn't previously loaded into memory.
 ---Not sure if a better alternative exists.
----@return UClass
 ---@param path string
+---@return UClass
 function CommandUtils.LoadClassByPath(path)
     print("Loading entity by path " .. path .. "\n")
     local UEHelpers = require("UEHelpers")
@@ -34,6 +34,20 @@ function CommandUtils.LoadClassByPath(path)
     local loaded = load(world, pointer)
     print("Loaded asset: " .. tostring(loaded) .. "\n")
     return loaded
+end
+
+---Converts a rotation struct to an FVector in the same direction
+---@param rot FRotator
+---@return FVector
+function CommandUtils.RotationToForward(rot)
+    local pitch = math.rad(rot.Pitch)
+    local yaw = math.rad(rot.Yaw)
+
+    return {
+        X = math.cos(pitch) * math.cos(yaw),
+        Y = math.cos(pitch) * math.sin(yaw),
+        Z = math.sin(pitch)
+    }
 end
 
 return CommandUtils
