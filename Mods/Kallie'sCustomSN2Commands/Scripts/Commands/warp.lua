@@ -1,4 +1,5 @@
 local UEHelpers = require("UEHelpers")
+local CommandUtils = require("CommandUtils")
 
 -- WARP [X] [Y] [Z]
 local function warp(args)
@@ -9,9 +10,7 @@ local function warp(args)
         Z=tonumber(args[4])
     }
     
-    -- Both of these functions seem to be necessary to move the player
-    player.Pawn:K2_TeleportTo(position, {})
-    player.Pawn:K2_SetActorLocation(position, false, {}, false)
+    CommandUtils.TeleportPlayer(position)
 end
 
 return warp

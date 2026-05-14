@@ -1,17 +1,7 @@
 local UEHelpers = require("UEHelpers")
+local CommandUtils = require("CommandUtils")
 
 local METERS_TO_CM <const> = 100
-
-local function rotationToForward(rot)
-    local pitch = math.rad(rot.Pitch)
-    local yaw = math.rad(rot.Yaw)
-
-    return {
-        X = math.cos(pitch) * math.cos(yaw),
-        Y = math.cos(pitch) * math.sin(yaw),
-        Z = math.sin(pitch)
-    }
-end
 
 -- like warpforward, but this shorthand uses meters
 -- w [METERS]
@@ -22,7 +12,7 @@ local function w(args)
     local distance = (tonumber(args[2]) or 5) * METERS_TO_CM
 
     local camera_rotation = player:GetControlRotation()
-    local forward = rotationToForward(camera_rotation)
+    local forward = CommandUtils.RotationToForward(camera_rotation)
 
     local current_pos = pawn:K2_GetActorLocation()
 
@@ -32,9 +22,7 @@ local function w(args)
         Z = current_pos.Z + forward.Z * distance
     }
 
-    -- Both functions seem to be necessary to move the player, for some reason
-    pawn:K2_TeleportTo(position, {})
-    pawn:K2_SetActorLocation(position, false, {}, false)
+    CommandUtils.TeleportPlayer(position)
 end
 
 return w

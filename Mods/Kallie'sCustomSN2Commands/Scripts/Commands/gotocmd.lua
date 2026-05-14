@@ -1,16 +1,4 @@
-local UEHelpers = require("UEHelpers")
-
-local function teleportPlayer(position)
-    local player = UEHelpers:GetPlayerController()
-    player.Pawn:K2_TeleportTo(position, {})
-    player.Pawn:K2_SetActorLocation(position, false, {}, false)
-    print(string.format(
-        "Teleported player to (%.0f, %.0f, %.0f) for goto command\n",
-        position.X,
-        position.Y,
-        position.Z
-    ))
-end
+local CommandUtils = require("CommandUtils")
 
 -- custom goto commands
 --[[
@@ -34,7 +22,7 @@ local function gotocmd(args)
             Y = lifepod_pos.Y,
             Z = lifepod_pos.Z + 150
         }
-        teleportPlayer(position)
+        CommandUtils.TeleportPlayer(position)
         return
     end
 
