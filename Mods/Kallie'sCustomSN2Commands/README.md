@@ -18,10 +18,15 @@ Note that standard units in Unreal Engine are centimeters, unlike Unity, which u
 
 # Commands list:
 
-| Command            | Description                                                       | Example                 |
-|--------------------|-------------------------------------------------------------------|-------------------------|
-| `goto lifepod`     | Sends the player to the Lifepod.                                  | `goto lifepod`          |
-| `warp [x] [y] [z]` | Teleports the player to the coordinates. Units are in centimeters. | `warp -170568 314929 0` |
-| `w [m]`            | Teleports the player forward `m` meters.                          | `w 5`                   |
-| `warpforward [cm]` | Teleports the player forward `cm` centimeters.                    | `warpforward 500`       |
-| `warpme`           | Teleports the player to the lifepod.                              | `warpme`                |
+|            Command | Description                                                                | Example                                                                                                 |
+|-------------------:|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+|     `Goto Lifepod` | Sends the player to the Lifepod.                                           | `goto lifepod`                                                                                          |
+| `Warp [x] [y] [z]` | Teleports the player to the coordinates.                                   | `warp -170568 314929 0`                                                                                 |
+|            `W [m]` | Teleports the player forward `m` meters.                                   | `w 5`                                                                                                   |
+| `Warpforward [cm]` | Teleports the player forward `cm` centimeters.                             | `warpforward 500`                                                                                       |
+|           `Warpme` | Teleports the player to the lifepod.                                       | `warpme`                                                                                                |
+| `LoadClass [path]` | Loads an asset into memory (generally useless outside some modding tools.) | `loadclass /Game/Blueprints/AI/Agents/CollectorLeviathan/BP_CollectorLeviathan.BP_CollectorLeviathan_C` |
+| `SummonAny [path]` | Spawns an asset by its path. Much more reliable than Summon.               | `summonany /Game/Blueprints/AI/Agents/LargeCreature024_Waxmoon/BP_Waxmoon.BP_Waxmoon_C`                 |
+
+> [!NOTE]
+> Commands such as SummonAny can also directly take package paths, e.g. those directly from FModel. Both `Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01` and `/Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C` are both valid parameters.
