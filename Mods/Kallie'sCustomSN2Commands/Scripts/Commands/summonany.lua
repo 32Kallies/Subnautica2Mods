@@ -23,13 +23,14 @@ end
 ---Loads a class into memory and then summons it.
 ---Comparable to the Summon command, but works more consistently.
 ---Examples:
----SafeSummon /Game/Blueprints/AI/Agents/LargeCreature024_Waxmoon/BP_Waxmoon.BP_Waxmoon_C
----SafeSummon /Game/Blueprints/AI/Agents/LargeCreature001_Hammerhead/BP_Hammerhead.BP_HammerHead_C
-local function safeSummon(args)
+---SummonAny /Game/Blueprints/AI/Agents/LargeCreature024_Waxmoon/BP_Waxmoon.BP_Waxmoon_C
+---SummonAny /Game/Blueprints/AI/Agents/LargeCreature001_Hammerhead/BP_Hammerhead.BP_HammerHead_C
+local function summonAny(args)
     if #args < 2 then
         print("This command expects a parameter for the blueprint path")
     end
-    local class = args[2]
+    local path = args[2]
+    local class = CommandUtils.CorrectClassPath(path)
     print("Summoning entity by path " .. class .. "\n")
     ExecuteInGameThread(function()
         local loaded = CommandUtils.LoadClassByPath(class)
@@ -38,4 +39,4 @@ local function safeSummon(args)
     end)
 end
 
-return safeSummon
+return summonAny
