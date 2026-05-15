@@ -29,4 +29,4 @@ Note that standard units in Unreal Engine are centimeters, unlike Unity, which u
 | `SummonAny [path]` | Spawns an asset by its path. Much more reliable than Summon.               | `summonany /Game/Blueprints/AI/Agents/LargeCreature024_Waxmoon/BP_Waxmoon.BP_Waxmoon_C`                 |
 
 > [!NOTE]
-> Commands such as SummonAny can also directly take package paths, e.g. those directly from FModel. Both `Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01` and `/Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C` are both valid parameters.
+> Commands such as SummonAny can also directly take package paths, e.g. those directly from FModel. Both `Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01` and `/Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C` are valid parameters.
