@@ -15,6 +15,30 @@ function CommandUtils.TeleportPlayer(position)
     ))
 end
 
+---Allows package paths from FModel to be directly understood, saving a lot of time!
+---Example input A: Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01
+---Example input B: /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C 
+---Example output:  /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C
+---@param path string
+---@return string
+function CommandUtils.CorrectClassPath(path)
+    -- remove .uasset, we don't want that
+    path = path:gsub("%.uasset$", "")
+    -- E.g.: Subnautica2/Content/path_to_asset_without.something_C
+    local actual_path, bp_name = path:match("^Subnautica2/Content/(.+)/([^/]+)$")
+
+    if actual_path and bp_name then
+        return string.format(
+            "/Game/%s/%s.%s_C",
+            actual_path,
+            bp_name,
+            bp_name
+        )
+    end
+
+    return path
+end
+
 ---Loads a class by its path, even if it wasn't previously loaded into memory.
 ---Not sure if a better alternative exists.
 ---@param path string

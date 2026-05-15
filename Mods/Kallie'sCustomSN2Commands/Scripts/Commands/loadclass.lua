@@ -7,7 +7,9 @@ local function loadClass(args)
     if #args < 2 then
         print("This command expects a parameter for the blueprint path")
     end
-    local class = args[2]
+    local path = args[2]
+    local class = CommandUtils.CorrectClassPath(path)
+    print("Loading entity by path " .. class .. "\n")
     ExecuteInGameThread(function()
         CommandUtils.LoadClassByPath(class)
     end)
