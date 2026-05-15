@@ -1,43 +1,16 @@
--- COMMAND REGISTRY (See the Commands folder to add more)
+local KalliesCommandAPI = require("KalliesCommandAPI")
 
-local commands = {
-    w = require("Commands.w"),
-    ["goto"] = require("Commands.gotocmd"),
-    warp = require("Commands.warp"),
-    warpforward = require("Commands.warpforward"),
-    warpme = require("Commands.warpme"),
-    loadclass = require("Commands.loadclass"),
-    summonany = require("Commands.summonany")
-}
-
--- BACKEND LOGIC & HOOKS BELOW
-
-local function split(input)
-    local parts = {}
-    for token in string.gmatch(input, "%S+") do
-        table.insert(parts, token)
-    end
-    return parts
-end
-
-local function callCommand(input)
-    local args = split(input)
-
-    if #args == 0 then return end
-
-    local cmd = string.lower(args[1])
-
-    local handler = commands[cmd]
-    if handler then
-        handler(args)
-    else
-        print("Unknown command: " .. cmd .. "\n")
-    end
-end
-
-local currentInput = ""
+KalliesCommandAPI.RegisterCommand("w", require("Commands.w"))
+KalliesCommandAPI.RegisterCommand("goto", require("Commands.gotocmd"))
+KalliesCommandAPI.RegisterCommand("warp", require("Commands.warp"))
+KalliesCommandAPI.RegisterCommand("warpforward", require("Commands.warpforward"))
+KalliesCommandAPI.RegisterCommand("warpme", require("Commands.warpme"))
+KalliesCommandAPI.RegisterCommand("loadclass", require("Commands.loadclass"))
+KalliesCommandAPI.RegisterCommand("summonany", require("Commands.summonany"))
 
 -- HOOKS
+local currentInput = ""
+
 local Pre, Post = RegisterHook("/Script/Subnautica2.SN2CheatInput:GetTypedString",
     function(Context)
         -- SKIP PREFIX
@@ -57,7 +30,7 @@ local Pre, Post = RegisterHook("/Script/Subnautica2.SN2CheatInput:GetTypedString
 -- on completing command input
 RegisterKeyBindAsync(Key.RETURN, {}, function()
     if currentInput ~= "" then
-        callCommand(currentInput)
+        KalliesCommandAPI.CallCommand(currentInput)
         currentInput = ""
     end
     currentInput = ""
