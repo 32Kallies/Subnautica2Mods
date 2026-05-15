@@ -33,6 +33,12 @@ Allows you to set any custom number of slots for the toolbar. Edit the config.lu
 
 <img width="1152" height="163" alt="image" src="https://github.com/user-attachments/assets/e8d62b91-b9c6-4237-9e1d-5bf566a6b987" />
 
+## Scanner Station Range Extender
+
+Extends the Scanner Station's range by 200 meters (configurable).
+
+<img width="794" height="144" alt="image" src="https://github.com/user-attachments/assets/eb374966-bc25-4145-832f-b80350037004" />
+
 ## SN2 Commands Enabler Mod
 
 Activates the in-game command console. You can open this with the Enter key.
