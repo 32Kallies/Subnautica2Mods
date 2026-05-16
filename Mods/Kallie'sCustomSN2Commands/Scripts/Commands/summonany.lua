@@ -28,6 +28,7 @@ end
 local function summonAny(args)
     if #args < 2 then
         print("This command expects a parameter for the blueprint path")
+        return
     end
     local path = args[2]
     local class = CommandUtils.CorrectClassPath(path)

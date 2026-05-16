@@ -7,6 +7,7 @@ local CommandUtils = require("CommandUtils")
 local function gotocmd(args)
     if #args < 2 then
         print("Invalid command (location expected, e.g. 'goto lifepod')\n")
+        return
     end
 
     if args[2] == "lifepod" then
