@@ -19,7 +19,7 @@ local function setPassiveBiomodSlots()
     local permanent = makeGameplayTag("PermanentUpgrades.PassiveBiomodSlots")
 
     local current_extra_slots = tracker:GetValue(increase_passive_biomod_slots, permanent)
-    local slots_to_add = config.TotalSlots - (base_slots + current_extra_slots)
+    local slots_to_add = config.TotalPassiveSlots - (base_slots + current_extra_slots)
     if slots_to_add ~= 0 then
         tracker:Notify(increase_passive_biomod_slots, permanent, slots_to_add)
     end
