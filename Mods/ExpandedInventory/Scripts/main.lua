@@ -4,7 +4,7 @@ local function makeGameplayTag(tag)
     return { TagName = FName(tag) }
 end
 
---- The inventory space can be increased up to 5 times
+---The inventory space can be increased up to 5 times
 ---@param times integer
 local function increaseInventorySize(times)
     local context = StaticFindObject("/Script/UWEEventTracker.UWEEventTrackerStatics")
