@@ -14,7 +14,7 @@ end
 ---@param message string
 local function debugPrint(message)
     if DEBUG then
-        print(string.format("[%s v%s-DEBUG] %s\n", mod_name, version, message))
+        print(string.format("[%s v%s DEBUG] %s\n", mod_name, version, message))
     end
 end
 
