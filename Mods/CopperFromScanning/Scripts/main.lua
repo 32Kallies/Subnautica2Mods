@@ -1,6 +1,6 @@
 -- COMMON UTILITIES
 
-local DEBUG = true
+local DEBUG = false
 local mod_name = "CopperFromScanning"
 
 local UEHelpers = require("UEHelpers")
