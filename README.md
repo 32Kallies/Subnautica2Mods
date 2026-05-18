@@ -26,6 +26,11 @@ this mod particularly helps if you missed a location and don't want to go lookin
 
 <img width="395" height="570" alt="image" src="https://github.com/user-attachments/assets/4686dbd5-2236-4ca1-8a1c-b9daea97b42f" />
 
+## Extra Biomod Slots
+
+Unlocks more biomod slots. Configurable, but unlocks 1 extra by default.
+
+<img width="680" height="269" alt="image" src="https://github.com/user-attachments/assets/4a627ebd-c55a-4a15-9ae0-5ad5c6b39ca5" />
 
 ## Kallie's Custom SN2 Commands
 
