@@ -2,18 +2,19 @@
 
 local DEBUG = false
 local mod_name = "CopperFromScanning"
+local version = "1.0.0"
 
 local UEHelpers = require("UEHelpers")
 
 ---@param message string
 local function modPrint(message)
-    print(string.format("[%s] %s\n", mod_name, message))
+    print(string.format("[%s v%s] %s\n", mod_name, version, message))
 end
 
 ---@param message string
 local function debugPrint(message)
     if DEBUG then
-        print(string.format("[%s-DEBUG] %s\n", mod_name, message))
+        print(string.format("[%s v%s-DEBUG] %s\n", mod_name, version, message))
     end
 end
 
