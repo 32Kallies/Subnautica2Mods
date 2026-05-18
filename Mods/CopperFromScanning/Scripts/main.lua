@@ -17,9 +17,8 @@ local function debugPrint(message)
     end
 end
 
--- MOD LOGIC
+--[[MAIN MOD BELOW]]
 
--- Copper ID
 local item_on_scanning = "/Game/Blueprints/Items/Resources/BP_Copper.BP_Copper_C"
 
 -- STATIC REFERENCES
@@ -27,23 +26,22 @@ local item_on_scanning = "/Game/Blueprints/Items/Resources/BP_Copper.BP_Copper_C
 local UWEScanData = StaticFindObject("/Script/UWEScanner.UWEScanData")
 local UWEScanData_GetScanDataForActor = StaticFindObject("/Script/UWEScanner.UWEScanData:GetScanDataForActor")
 
--- SN2Statics:GetLocalPlayerInventory -- returns a UUWEInventoryComponent instance
 local SN2Statics = StaticFindObject("/Script/Subnautica2.SN2Statics")
 local SN2Statics_GetLocalPlayerInventory = StaticFindObject("/Script/Subnautica2.SN2Statics:GetLocalPlayerInventory")
 
 local KismetSystemLibrary = StaticFindObject("/Script/Engine.KismetSystemLibrary")
-
 local KSL_LoadAssetClass_Blocking = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
 local KSL_MakeSoftClassPath = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
 local KSL_Conv_SoftClassPathToSoftClassRef = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
 
 -- STATIC VARIABLES
+
 local scanning_completed_object = false
--- future idea: store specifically by actor
+-- future idea: store this per-actor
 
 -- HELPER FUNCTIONS
 
----Loads a class by its path
+---Loads a class by its path (must be executed in the game thread)
 ---@param path string
 ---@return UClass
 local function loadClassByPath(path)
@@ -55,7 +53,7 @@ local function loadClassByPath(path)
     return loaded
 end
 
----Adds an item by its path
+---Adds an item to the player's inventory by its path
 ---@param path string
 local function addItemToInventory(path)
     ExecuteInGameThread(function ()
@@ -98,8 +96,9 @@ local function addItemToInventory(path)
     end)
 end
 
--- HOOKS
+--[[HOOKS]]
 
+-- Hook #1: Check if the item that is currently being scanned is already unlocked, then store that information for later
 Pre1, Post1 = RegisterHook("/Script/UWEScanner.UWEScannedActorsComponent:GetActorInstanceScannedProgressForPlayer",
 function(Context, ScannedActor)
     debugPrint("Querying if should give copper")
@@ -118,18 +117,16 @@ function(Context, ScannedActor)
         return
     end
 
-    if DEBUG then
-        debugPrint("Currently scanning: " .. scan_data.Name:ToString())
-    end
-
     scanning_completed_object = component:IsScanDataProgressComplete(scan_data)
 
     if DEBUG then
+        debugPrint("Currently scanning: " .. scan_data.Name:ToString())
         debugPrint("Complete: " .. tostring(scanning_completed_object))
     end
 end
 )
 
+-- Hook #2: When an object is fully scanned, check if its state was already marked as complete, then give the player copper
 Pre2, Post2 = RegisterHook("/Script/UWEScanner.UWEScannedActorsComponent:ClientNotifyScannedInstanceCompleted",
 function(Context, ScannedActor)
     debugPrint("On scan complete")
