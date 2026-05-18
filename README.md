@@ -13,6 +13,12 @@ Requires [UE4SS for Subnautica 2](https://github.com/Subnautica2Modding/Subnauti
 
 # Mods
 
+## Copper From Scanning
+
+Gives 1 copper upon scanning an already known fragment, on top of the normal reward of titanium.
+
+<img width="667" height="196" alt="image" src="https://github.com/user-attachments/assets/dd348b74-5edd-41e2-83cd-19ea2dccd6cb" />
+
 ## Expanded Inventory Mod
 
 Unlocks all possible inventory slots at the start of the game. This change is not reversible. While the developers intended for players to unlock these naturally over time,
