@@ -1,6 +1,6 @@
 -- COMMON UTILITIES
 
-local DEBUG = true
+local DEBUG = false
 local mod_name = "ExtraPassiveBiomodSlots"
 local version = "1.0.1"
 
