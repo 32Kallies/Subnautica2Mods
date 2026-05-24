@@ -1,0 +1,1 @@
+For this mod to work, you must also replace the base_general.bank file inside Subnautica2\Subnautica2\Content\FMOD\Desktop\
