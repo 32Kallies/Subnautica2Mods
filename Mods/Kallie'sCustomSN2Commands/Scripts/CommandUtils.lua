@@ -1,5 +1,51 @@
+-- CORE INFO
+
+local mod_name = "Kallie's Custom Commands"
+local version = "1.3.0"
+
+-- Using
+
 local CommandUtils = {}
 local UEHelpers = require("UEHelpers")
+
+local ksl = StaticFindObject("/Script/Engine.KismetSystemLibrary")
+local ksl_load_blocking = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
+local ksl_make_soft = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
+local ksl_convert_path_to_soft_ref = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
+
+---@type UClass
+local fmod_event_class = StaticFindObject("/Script/FMODStudio.FMODEvent")
+
+--[[FUNCTIONS]]
+
+---Logs the given message.
+---@param message string
+function CommandUtils.Log(message)
+    print(string.format("[%s v%s] %s\n", mod_name, version, message))
+end
+
+---Splits a string by spaces
+---@param input string
+---@return table
+function CommandUtils.SplitBySpace(input)
+    local parts = {}
+    for token in string.gmatch(input, "%S+") do
+        table.insert(parts, token)
+    end
+    return parts
+end
+
+---Splits a string by a pattern
+---@param input string
+---@param pattern string
+---@return table
+function CommandUtils.Split(input, pattern)
+    local parts = {}
+    for token in string.gmatch(input, pattern) do
+        table.insert(parts, token)
+    end
+    return parts
+end
 
 ---Teleports the players to the given coordinates (in centimeters)
 ---@param position FVector
@@ -7,8 +53,8 @@ function CommandUtils.TeleportPlayer(position)
     local player = UEHelpers:GetPlayerController()
     player.Pawn:K2_TeleportTo(position, {})
     player.Pawn:K2_SetActorLocation(position, false, {}, false)
-    print(string.format(
-        "Teleported player to (%.0f, %.0f, %.0f) for goto command\n",
+    CommandUtils.Log(string.format(
+        "Teleported player to (%.0f, %.0f, %.0f) for goto command",
         position.X,
         position.Y,
         position.Z
@@ -44,17 +90,14 @@ end
 ---@param path string
 ---@return UClass
 function CommandUtils.LoadClassByPath(path)
-    local UEHelpers = require("UEHelpers")
-    local load = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
-    local kismet_library = StaticFindObject("/Script/Engine.KismetSystemLibrary")
-    local make_soft = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
-    local convert = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
-
-    local soft_class_path = make_soft(kismet_library, path)
-    local pointer = convert(kismet_library, soft_class_path)
+    ---@type FSoftClassPath
+    local soft_class_path = ksl_make_soft(ksl, path)
+    ---@type TSoftClassPtr<UObject>
+    local pointer = ksl_convert_path_to_soft_ref(ksl, soft_class_path)
     local world = UEHelpers.GetWorld()
 
-    local loaded = load(world, pointer)
+    ---@type UClass
+    local loaded = ksl_load_blocking(world, pointer)
     return loaded
 end
 
@@ -70,6 +113,38 @@ function CommandUtils.RotationToForward(rot)
         Y = math.cos(pitch) * math.sin(yaw),
         Z = math.sin(pitch)
     }
+end
+
+---Converts a GUID string such as 8429A379-54374E08-B506FAC9-307FDCCB into a 128-bit GUID
+---@param guid_string string
+---@return FGuid
+function CommandUtils.ParseGuid(guid_string)
+    local separated = CommandUtils.Split(guid_string, "%x+")
+    if #separated ~= 4 then
+        CommandUtils.Log("Invalid GUID: " .. guid_string)
+        return {}
+    end
+
+    ---@type FGuid
+    local guid = {
+        A = tonumber(separated[1], 16),
+        B = tonumber(separated[2], 16),
+        C = tonumber(separated[3], 16),
+        D = tonumber(separated[4], 16)
+   }
+
+   return guid
+end
+
+---Creates an FMOD Asset with the given sound GUID
+---@param guid FGuid
+---@return UFMODEvent
+function CommandUtils.CreateFMODAsset(guid)
+    local world = UEHelpers.GetWorld()
+    ---@type UFMODEvent
+    local fmod_event = StaticConstructObject(fmod_event_class, world)
+    fmod_event.AssetGuid = guid
+    return fmod_event
 end
 
 return CommandUtils

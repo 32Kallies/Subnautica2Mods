@@ -6,7 +6,7 @@ local CommandUtils = require("CommandUtils")
 ]]
 local function gotocmd(args)
     if #args < 2 then
-        print("Invalid command (location expected, e.g. 'goto lifepod')\n")
+        CommandUtils.Log("Invalid command (location expected, e.g. 'goto lifepod')")
         return
     end
 
@@ -27,7 +27,7 @@ local function gotocmd(args)
         return
     end
 
-    print("Location '" .. args[2] .. "' not recognized!\n")
+    CommandUtils.Log("Location '" .. args[2] .. "' not recognized!")
 end
 
 return gotocmd

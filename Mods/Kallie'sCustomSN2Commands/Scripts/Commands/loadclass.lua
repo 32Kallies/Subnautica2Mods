@@ -5,12 +5,12 @@ local CommandUtils = require("CommandUtils")
 ---LoadClass /Game/Blueprints/AI/Agents/CollectorLeviathan/BP_CollectorLeviathan.BP_CollectorLeviathan_C
 local function loadClass(args)
     if #args < 2 then
-        print("This command expects a parameter for the blueprint path")
+        CommandUtils.Log("This command expects a parameter for the blueprint path")
         return
     end
     local path = args[2]
     local class = CommandUtils.CorrectClassPath(path)
-    print("Loading entity by path " .. class .. "\n")
+    CommandUtils.Log("Loading entity by path " .. class)
     ExecuteInGameThread(function()
         CommandUtils.LoadClassByPath(class)
     end)

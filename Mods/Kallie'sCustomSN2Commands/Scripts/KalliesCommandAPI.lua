@@ -4,20 +4,14 @@ local KalliesCommandAPI = {}
 
 local commands = {}
 
--- UTILS
+-- REQUIREMENTS
 
-local function split(input)
-    local parts = {}
-    for token in string.gmatch(input, "%S+") do
-        table.insert(parts, token)
-    end
-    return parts
-end
+local CommandUtils = require("CommandUtils")
 
 -- API FUNCTIONS
 
 function KalliesCommandAPI.CallCommand(input)
-    local args = split(input)
+    local args = CommandUtils.SplitBySpace(input)
 
     if #args == 0 then return end
 
@@ -27,7 +21,7 @@ function KalliesCommandAPI.CallCommand(input)
     if handler then
         handler(args)
     else
-        print("Unknown command: " .. cmd .. "\n")
+        CommandUtils.Log("Unknown command: " .. cmd)
     end
 end
 

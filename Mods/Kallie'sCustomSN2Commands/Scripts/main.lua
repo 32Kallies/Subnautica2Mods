@@ -7,6 +7,7 @@ KalliesCommandAPI.RegisterCommand("warpforward", require("Commands.warpforward")
 KalliesCommandAPI.RegisterCommand("warpme", require("Commands.warpme"))
 KalliesCommandAPI.RegisterCommand("loadclass", require("Commands.loadclass"))
 KalliesCommandAPI.RegisterCommand("summonany", require("Commands.summonany"))
+KalliesCommandAPI.RegisterCommand("playsound2d", require("Commands.playsound2d"))
 
 -- HOOKS
 local currentInput = ""

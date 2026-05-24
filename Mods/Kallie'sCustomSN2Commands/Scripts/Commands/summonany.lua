@@ -27,12 +27,12 @@ end
 ---SummonAny /Game/Blueprints/AI/Agents/LargeCreature001_Hammerhead/BP_Hammerhead.BP_HammerHead_C
 local function summonAny(args)
     if #args < 2 then
-        print("This command expects a parameter for the blueprint path")
+        CommandUtils.Log("This command expects a parameter for the blueprint path")
         return
     end
     local path = args[2]
     local class = CommandUtils.CorrectClassPath(path)
-    print("Summoning entity by path " .. class .. "\n")
+    CommandUtils.Log("Summoning entity by path " .. class)
     ExecuteInGameThread(function()
         local loaded = CommandUtils.LoadClassByPath(class)
         local world = UEHelpers:GetWorld()
