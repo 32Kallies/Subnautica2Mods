@@ -1,6 +1,10 @@
 local CommandUtils = require("CommandUtils")
 local UEHelpers = require("UEHelpers")
 
+-- UUWEDynamicItemsManager:RegisterActor
+local DynamicItemsManager = StaticFindObject("/Script/UWEDynamicItems.UWEDynamicItemsManager")
+local DIM_RegisterActor = StaticFindObject("/Script/UWEDynamicItems.UWEDynamicItemsManager:RegisterActor")
+
 ---Gets a spawn position for an entity in front of the player
 ---@param centimeters_forward integer
 ---@return FVector
@@ -36,7 +40,8 @@ local function summonAny(args)
     ExecuteInGameThread(function()
         local loaded = CommandUtils.LoadClassByPath(class)
         local world = UEHelpers:GetWorld()
-        world:SpawnActor(loaded, getSpawnPosition(500), {})
+        local actor = world:SpawnActor(loaded, getSpawnPosition(500), {})
+        DIM_RegisterActor(DynamicItemsManager, actor)
     end)
 end
 
