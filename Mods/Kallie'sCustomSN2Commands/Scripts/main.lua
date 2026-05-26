@@ -8,6 +8,7 @@ KalliesCommandAPI.RegisterCommand("warpme", require("Commands.warpme"))
 KalliesCommandAPI.RegisterCommand("loadclass", require("Commands.loadclass"))
 KalliesCommandAPI.RegisterCommand("summonany", require("Commands.summonany"))
 KalliesCommandAPI.RegisterCommand("playsound2d", require("Commands.playsound2d"))
+KalliesCommandAPI.RegisterCommand("summonmesh", require("Commands.summonmesh"))
 
 -- HOOKS
 local currentInput = ""

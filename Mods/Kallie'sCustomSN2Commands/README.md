@@ -28,6 +28,7 @@ Note that standard units in Unreal Engine are centimeters, unlike Unity, which u
 |   `LoadClass [path]` | Loads an asset into memory (generally useless outside some modding tools.) | `loadclass /Game/Blueprints/AI/Agents/CollectorLeviathan/BP_CollectorLeviathan.BP_CollectorLeviathan_C` |
 |   `SummonAny [path]` | Spawns an asset by its path. Much more reliable than Summon.               | `summonany /Game/Blueprints/AI/Agents/LargeCreature024_Waxmoon/BP_Waxmoon.BP_Waxmoon_C`                 |
 | `PlaySound2D [guid]` | Plays a 2D sound by its FMOD Event GUID.                                   | `PlaySound2D 8429A379-54374E08-B506FAC9-307FDCCB`                                                       |
+| `SummonMesh [path] ` | Summons a static mesh actor with the static mesh at the given path.        | `SummonMesh Subnautica2/Content/Art/Items/CopperWire/SM_CopperWire.uasset`                              |
 
 > [!NOTE]
 > Commands such as SummonAny can also directly take package paths, e.g. those directly from FModel. Both `Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01` and `/Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C` are valid parameters.
