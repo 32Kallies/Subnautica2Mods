@@ -1,7 +1,7 @@
 -- CORE INFO
 
 local mod_name = "Kallie's Custom Commands"
-local version = "1.3.0"
+local version = "1.4.0"
 
 -- Using
 
