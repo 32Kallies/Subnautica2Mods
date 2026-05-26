@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "slug": "sn1-base-voice",
+  "name": "SN1 Base Voice",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["SN1BaseVoice.zip"],
+  "primaryAsset": "SN1BaseVoice.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ]
+}

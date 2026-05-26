@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "expanded-inventory",
+  "name": "Expanded Inventory",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["ExpandedInventory.zip"],
+  "primaryAsset": "ExpandedInventory.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/4686dbd5-2236-4ca1-8a1c-b9daea97b42f",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/4686dbd5-2236-4ca1-8a1c-b9daea97b42f" }
+  ]
+}

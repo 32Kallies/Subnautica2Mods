@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "kallies-custom-sn2-commands",
+  "name": "Kallie's Custom SN2 Commands",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["KalliesCustomSN2Commands.zip"],
+  "primaryAsset": "KalliesCustomSN2Commands.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/b33592a4-4097-41ce-928c-75ee15d15de3",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/b33592a4-4097-41ce-928c-75ee15d15de3" }
+  ]
+}
