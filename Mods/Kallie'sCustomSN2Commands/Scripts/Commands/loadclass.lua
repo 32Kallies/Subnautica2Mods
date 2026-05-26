@@ -9,7 +9,7 @@ local function loadClass(args)
         return
     end
     local path = args[2]
-    local class = CommandUtils.CorrectClassPath(path)
+    local class = CommandUtils.CorrectBlueprintPath(path)
     CommandUtils.Log("Loading entity by path " .. class)
     ExecuteInGameThread(function()
         CommandUtils.LoadClassByPath(class)

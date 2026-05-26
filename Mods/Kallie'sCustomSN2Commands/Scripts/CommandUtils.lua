@@ -9,9 +9,12 @@ local CommandUtils = {}
 local UEHelpers = require("UEHelpers")
 
 local ksl = StaticFindObject("/Script/Engine.KismetSystemLibrary")
-local ksl_load_blocking = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
-local ksl_make_soft = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
-local ksl_convert_path_to_soft_ref = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
+local ksl_load_class_blocking = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadClassAsset_Blocking")
+local ksl_load_asset_blocking = StaticFindObject("/Script/Engine.KismetSystemLibrary:LoadAsset_Blocking")
+local ksl_make_soft_class = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
+local ksl_make_soft_object = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftObjectPath")
+local ksl_convert_class_path_to_soft_ref = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
+local ksl_convert_object_ref_to_obj = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftObjectReferenceToObject")
 
 ---@type UClass
 local fmod_event_class = StaticFindObject("/Script/FMODStudio.FMODEvent")
@@ -62,9 +65,9 @@ function CommandUtils.TeleportPlayer(position)
 end
 
 ---Allows package paths from FModel to be directly understood, saving a lot of time!
----Example input A: Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01
----Example input B: /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C 
----Example output:  /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C
+---Example input A: Subnautica2/Content/Art/Items/CopperWire/SM_CopperWire
+---Example input B: /Game/Art/Items/CopperWire/SM_CopperWire
+---Example output:  /Game/Art/Items/CopperWire/SM_CopperWire
 ---@param path string
 ---@return string
 function CommandUtils.CorrectClassPath(path)
@@ -75,7 +78,7 @@ function CommandUtils.CorrectClassPath(path)
 
     if actual_path and bp_name then
         return string.format(
-            "/Game/%s/%s.%s_C",
+            "/Game/%s/%s.%s",
             actual_path,
             bp_name,
             bp_name
@@ -85,19 +88,46 @@ function CommandUtils.CorrectClassPath(path)
     return path
 end
 
+---Allows package paths from FModel to be directly understood, saving a lot of time!
+---Example input A: Subnautica2/Content/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01
+---Example input B: /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C 
+---Example output:  /Game/Blueprints/AI/Agents/LargeCreature014_Cerathecan/BP_Cerathecan_01.BP_Cerathecan_01_C
+---@param path string
+---@return string
+function CommandUtils.CorrectBlueprintPath(path)
+    return CommandUtils.CorrectClassPath(path) .. "_C"
+end
+
 ---Loads a class by its path, even if it wasn't previously loaded into memory.
 ---Not sure if a better alternative exists.
 ---@param path string
 ---@return UClass
 function CommandUtils.LoadClassByPath(path)
     ---@type FSoftClassPath
-    local soft_class_path = ksl_make_soft(ksl, path)
+    local soft_class_path = ksl_make_soft_class(ksl, path)
     ---@type TSoftClassPtr<UObject>
-    local pointer = ksl_convert_path_to_soft_ref(ksl, soft_class_path)
+    local pointer = ksl_convert_class_path_to_soft_ref(ksl, soft_class_path)
     local world = UEHelpers.GetWorld()
 
     ---@type UClass
-    local loaded = ksl_load_blocking(world, pointer)
+    local loaded = ksl_load_class_blocking(world, pointer)
+    return loaded
+end
+
+---Loads a UObject by its path, even if it wasn't previously loaded into memory.
+---@generic T: UObject
+---@param path string
+---@return T
+function CommandUtils.LoadAssetByPath(path)
+    ---@type FSoftObjectPath
+    local soft_object_path = ksl_make_soft_object(ksl, path)
+
+    ---@type TSoftObjectPtr<UObject>
+    local pointer = ksl_convert_object_ref_to_obj(ksl, soft_object_path)
+    local world = UEHelpers.GetWorld()
+
+    ---@type UObject
+    local loaded = ksl_load_asset_blocking(world, pointer)
     return loaded
 end
 
@@ -112,6 +142,25 @@ function CommandUtils.RotationToForward(rot)
         X = math.cos(pitch) * math.cos(yaw),
         Y = math.cos(pitch) * math.sin(yaw),
         Z = math.sin(pitch)
+    }
+end
+
+---Gets a spawn position for an entity in front of the player
+---@param centimeters_forward integer
+---@return FVector
+function CommandUtils.GetSpawnPosition(centimeters_forward)
+    local player = UEHelpers:GetPlayerController()
+    local pawn = player.Pawn
+
+    local camera_rotation = player:GetControlRotation()
+    local forward = CommandUtils.RotationToForward(camera_rotation)
+
+    local currentPos = pawn:K2_GetActorLocation()
+
+    return {
+        X = currentPos.X + forward.X * centimeters_forward,
+        Y = currentPos.Y + forward.Y * centimeters_forward,
+        Z = currentPos.Z + forward.Z * centimeters_forward
     }
 end
 

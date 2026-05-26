@@ -5,25 +5,6 @@ local UEHelpers = require("UEHelpers")
 local DynamicItemsManager = StaticFindObject("/Script/UWEDynamicItems.UWEDynamicItemsManager")
 local DIM_RegisterActor = StaticFindObject("/Script/UWEDynamicItems.UWEDynamicItemsManager:RegisterActor")
 
----Gets a spawn position for an entity in front of the player
----@param centimeters_forward integer
----@return FVector
-local function getSpawnPosition(centimeters_forward)
-    local player = UEHelpers:GetPlayerController()
-    local pawn = player.Pawn
-
-    local camera_rotation = player:GetControlRotation()
-    local forward = CommandUtils.RotationToForward(camera_rotation)
-
-    local currentPos = pawn:K2_GetActorLocation()
-
-    return {
-        X = currentPos.X + forward.X * centimeters_forward,
-        Y = currentPos.Y + forward.Y * centimeters_forward,
-        Z = currentPos.Z + forward.Z * centimeters_forward
-    }
-end
-
 ---Loads a class into memory and then summons it.
 ---Comparable to the Summon command, but works more consistently.
 ---Examples:
@@ -35,12 +16,12 @@ local function summonAny(args)
         return
     end
     local path = args[2]
-    local class = CommandUtils.CorrectClassPath(path)
+    local class = CommandUtils.CorrectBlueprintPath(path)
     CommandUtils.Log("Summoning entity by path " .. class)
     ExecuteInGameThread(function()
         local loaded = CommandUtils.LoadClassByPath(class)
         local world = UEHelpers:GetWorld()
-        local actor = world:SpawnActor(loaded, getSpawnPosition(500), {})
+        local actor = world:SpawnActor(loaded, CommandUtils.GetSpawnPosition(500), {})
         DIM_RegisterActor(DynamicItemsManager, actor)
     end)
 end
