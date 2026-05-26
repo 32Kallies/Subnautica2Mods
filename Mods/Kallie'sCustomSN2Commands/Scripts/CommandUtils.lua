@@ -14,7 +14,7 @@ local ksl_load_asset_blocking = StaticFindObject("/Script/Engine.KismetSystemLib
 local ksl_make_soft_class = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftClassPath")
 local ksl_make_soft_object = StaticFindObject("/Script/Engine.KismetSystemLibrary:MakeSoftObjectPath")
 local ksl_convert_class_path_to_soft_ref = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftClassPathToSoftClassRef")
-local ksl_convert_object_ref_to_obj = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftObjectReferenceToObject")
+local ksl_convert_object_ref_to_obj_ref = StaticFindObject("/Script/Engine.KismetSystemLibrary:Conv_SoftObjPathToSoftObjRef")
 
 ---@type UClass
 local fmod_event_class = StaticFindObject("/Script/FMODStudio.FMODEvent")
@@ -95,7 +95,21 @@ end
 ---@param path string
 ---@return string
 function CommandUtils.CorrectBlueprintPath(path)
-    return CommandUtils.CorrectClassPath(path) .. "_C"
+    -- remove .uasset, we don't want that
+    path = path:gsub("%.uasset$", "")
+    -- E.g.: Subnautica2/Content/path_to_asset_without.something_C
+    local actual_path, bp_name = path:match("^Subnautica2/Content/(.+)/([^/]+)$")
+
+    if actual_path and bp_name then
+        return string.format(
+            "/Game/%s/%s.%s_C",
+            actual_path,
+            bp_name,
+            bp_name
+        )
+    end
+
+    return path
 end
 
 ---Loads a class by its path, even if it wasn't previously loaded into memory.
@@ -123,7 +137,7 @@ function CommandUtils.LoadAssetByPath(path)
     local soft_object_path = ksl_make_soft_object(ksl, path)
 
     ---@type TSoftObjectPtr<UObject>
-    local pointer = ksl_convert_object_ref_to_obj(ksl, soft_object_path)
+    local pointer = ksl_convert_object_ref_to_obj_ref(ksl, soft_object_path)
     local world = UEHelpers.GetWorld()
 
     ---@type UObject
