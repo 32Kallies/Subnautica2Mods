@@ -55,7 +55,7 @@ Extends the Scanner Station's range by 200 meters (configurable).
 Activates the in-game command console. You can open this with the Enter key.
 
 > [!WARNING]
-> It is very easy to accidentally misuse the command console. I do not suggest using this in multiplayer unless everyone in the game is willing to take the risks. 
+> It is very easy to accidentally misuse the command console. I don't suggest using this in multiplayer unless everyone in the game is willing to take the risks. 
 
 <img width="741" height="265" alt="image" src="https://github.com/user-attachments/assets/5ea2e5d7-4af8-4789-8921-32daeabe6225" />
 
