@@ -63,3 +63,6 @@ Activates the in-game command console. You can open this with the Enter key.
 Enables the 'Developer Game' button on the main menu that lets you load into various developer testing maps. This can be useful for quickly testing mods and exploring some unused/hidden content.
 
 <img width="371" height="277" alt="image" src="https://github.com/user-attachments/assets/4ae6c580-feea-4796-8d94-9c3be12fd78f" />
+
+## Subnautica 1 Seabase Voice
+Replaces the AI voice in habitats with the base voice from the first game.
