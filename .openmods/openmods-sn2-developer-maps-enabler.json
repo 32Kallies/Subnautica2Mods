@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "sn2-developer-maps-enabler",
+  "name": "SN2 Developer Maps Enabler",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["SN2DeveloperMapsEnabler.zip"],
+  "primaryAsset": "SN2DeveloperMapsEnabler.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/4ae6c580-feea-4796-8d94-9c3be12fd78f",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/4ae6c580-feea-4796-8d94-9c3be12fd78f" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "scanner-station-range-extender",
+  "name": "Scanner Station Range Extender",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["ScannerStationRangeExtender.zip"],
+  "primaryAsset": "ScannerStationRangeExtender.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/eb374966-bc25-4145-832f-b80350037004",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/eb374966-bc25-4145-832f-b80350037004" }
+  ]
+}

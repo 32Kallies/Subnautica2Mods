@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "copper-from-scanning",
+  "name": "Copper From Scanning",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["CopperFromScanning.zip"],
+  "primaryAsset": "CopperFromScanning.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/dd348b74-5edd-41e2-83cd-19ea2dccd6cb",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/dd348b74-5edd-41e2-83cd-19ea2dccd6cb" }
+  ]
+}

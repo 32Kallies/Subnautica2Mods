@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "slug": "extra-passive-biomod-slots",
+  "name": "Extra Passive Biomod Slots",
+  "supportedGameId": "subnautica-2",
+  "releaseAssets": ["ExtraPassiveBiomodSlots.zip"],
+  "primaryAsset": "ExtraPassiveBiomodSlots.zip",
+  "install": {
+    "path": "Subnautica2/Binaries/Win64/ue4ss/Mods"
+  },
+  "thumbnail": "https://github.com/user-attachments/assets/4a627ebd-c55a-4a15-9ae0-5ad5c6b39ca5",
+  "links": [
+    { "label": "Nexus Mods", "icon": "language", "url": "https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198" },
+    { "label": "UE4SS for Subnautica 2", "icon": "extension", "url": "https://github.com/Subnautica2Modding/Subnautica2-UE4SS/releases" }
+  ],
+  "media": [
+    { "type": "image", "url": "https://github.com/user-attachments/assets/4a627ebd-c55a-4a15-9ae0-5ad5c6b39ca5" }
+  ]
+}
