@@ -7,7 +7,7 @@ Requires [UE4SS for Subnautica 2](https://github.com/Subnautica2Modding/Subnauti
 ## Installation
 
 1. If you have not done so yet, please first download and install UE4SS for Subnautica 2.
-2. Download the desired mods. You can get these on my [Nexus Mods account](https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198) (where I tend to upload stable downloads), or by manually downloading them from this repository.
+2. Download the desired mods. You can get these on my [Nexus Mods account](https://www.nexusmods.com/profile/Kallie23/mods?gameId=9198) or [OpenMods](https://openmods.net/games/subnautica-2), or by manually downloading them from this repository.
 3. Place the mod folder(s) that you downloaded into the `Subnautica2\Subnautica2\Binaries\Win64\ue4ss\Mods` folder.
 4. That's all you need to do! You should be ready to launch the game with mods now. A file named UE4SS.log will be created in the ue4ss folder if it is working correctly.
 
